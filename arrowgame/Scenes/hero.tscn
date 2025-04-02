@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpklg6k8ieymc"]
+
+[ext_resource type="Script" uid="uid://dkr85ihvf31ws" path="res://Scripts/Unit.gd" id="1_stlmo"]
+[ext_resource type="Texture2D" uid="uid://c3tjq577806tj" path="res://Assets/32rogues/rogues.png" id="2_awl7p"]
+[ext_resource type="Resource" uid="uid://difxjp7ags840" path="res://Scripts/dwarf.tres" id="2_ucn7y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucn7y"]
+radius = 9.0
+height = 42.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stlmo"]
+bg_color = Color(0.160203, 0.0353379, 0.000271879, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awl7p"]
+bg_color = Color(0, 0.352941, 0.964706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.160203, 0.0353379, 0.000271879, 1)
+
+[node name="Unit" type="Area2D"]
+script = ExtResource("1_stlmo")
+stats = ExtResource("2_ucn7y")
+
+[node name="Skin" type="Sprite2D" parent="."]
+scale = Vector2(2.4375, 2.4375)
+texture = ExtResource("2_awl7p")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ucn7y")
+
+[node name="ManaBar" type="ProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -42.0
+offset_right = 32.0
+offset_bottom = -34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_stlmo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_awl7p")
+value = 40.0
+show_percentage = false
